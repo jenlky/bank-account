@@ -10,26 +10,22 @@ class Account {
       this.balance
     }`;
 
-    console.log(this.statement);
+    // console.log(this.statement);
   }
 
   withdraw(amount) {
-    try {
-      if (amount <= 0) {
-        throw new Error("Cannot withdraw 0 or negative amount");
-      } else if (this.balance > amount) {
-        this.balance -= amount;
-        this.statement += `\n${Account.formatDate()}\t\t-${amount}\t\t${
-          this.balance
-        }`;
-      }
-
+    if (amount <= 0) {
+      throw new Error("Cannot withdraw 0 or negative amount");
+    } else if (this.balance > amount) {
+      this.balance -= amount;
+      this.statement += `\n${Account.formatDate()}\t\t-${amount}\t\t${
+        this.balance
+      }`;
+    } else {
       throw new Error("Withdrawn amount is greater than balance");
-    } catch (error) {
-      return error.message;
     }
 
-    console.log(this.statement);
+    // console.log(this.statement);
   }
 
   static formatDate() {
